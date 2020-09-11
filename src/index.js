@@ -31,12 +31,7 @@ module.exports = function check(str, bracketsConfig) {
             bracketsQueue.pop()
         } else if (str.charAt(i) === '{' || str.charAt(i) === '[' || str.charAt(i) === '(') {
             bracketsQueue.push(str.charAt(i))
-        } else if (
-            (str.charAt(i) === ')' && bracketsQueue[bracketsQueue.length - 1] === '(')
-            ||
-            (str.charAt(i) === ']' && bracketsQueue[bracketsQueue.length - 1] === '[')
-            ||
-            (str.charAt(i) === '}' && bracketsQueue[bracketsQueue.length - 1] === '{')) {
+        } else if ( isBracketsCouple(bracketsQueue[bracketsQueue.length - 1] , str.charAt(i) ,bracketsConfig)) {
             bracketsQueue.pop()
         } else {
             bracketsQueue.push(str.charAt(i))
